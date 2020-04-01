@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 public class Blackjack
 {
-	private final int MIN = 100;
+	private final int MIN = 1;
 	private final int MAX = 10000;
 	/***
 	 * 
