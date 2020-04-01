@@ -1,0 +1,77 @@
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+/**
+ * 
+ * @author Andrew Heller
+ * Copyright (C) 2020 Blackjack Project 
+ *
+ */
+public class Blackjack
+{
+	private final int MIN = 100;
+	private final int MAX = 10000;
+	/***
+	 * 
+	 */
+	private static ArrayList<Opponent> opponents;
+	/***
+	 * 
+	 */
+	public Blackjack(int numPlayers) throws IOException
+	{
+		Blackjack.opponents = new ArrayList<>();
+		addPlayersToTable(numPlayers);
+	}
+	public int getSize() {
+		return opponents.size();
+	}
+	/***
+	 * 
+	 * @param numberOfPlayers
+	 * @throws IOException
+	 */
+	public void addPlayersToTable(int numberOfPlayers) throws IOException
+	{
+		for(int i = 0; i < numberOfPlayers;i++)
+		{
+			opponents.add(new Opponent());
+
+		}
+	}
+	public Opponent getOpponents(int i)
+	{
+		return this.opponents.get(i);
+	}
+	/***
+	 * 
+	 * @param args
+	 * @throws IOException
+	 */
+	public static void main(String[] args) throws IOException 
+	{
+		String x = "";
+		long time = System.currentTimeMillis(); //gives the amount of time that passed since the birth of this function since 1977
+
+		//System.out.println(time);
+		
+		Blackjack one = new Blackjack(6);
+		System.out.println(one.getSize());
+		System.out.println(Blackjack.opponents.get(2));
+		
+		
+		long t2 =  System.currentTimeMillis();
+		long timeTotal = t2-time;
+
+		//Print Line
+		System.out.println("\nProgram Run Time: ");
+		System.out.println(timeTotal + " milliseconds");
+
+	
+	}
+
+
+
+
+
+}
