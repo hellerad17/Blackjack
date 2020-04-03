@@ -18,18 +18,17 @@ import java.util.stream.Stream;
  * Copyright (C) 2020 Blackjack Project 
  *
  */
-
 public class Player
 {
 	private String name;
 	private int amount;
 	private ArrayList<Card> deck;
 	private static ArrayList<String> userFileContents;
+
 	public Player()
 	{
 		this.deck = new ArrayList<>();
-		this.userFileContents = new ArrayList<>();
-
+		this.userFileContents = new ArrayList<>();	
 	}
 	/***
 	 * Replaces the current name of the player in the file 'user.txt' but keeps the amount value in the value.
@@ -38,7 +37,7 @@ public class Player
 	 */
 	public void setName(String n) throws IOException
 	{
-		//this.name = n;
+		this.name = n;
 		Player.userFileContents.set(0, n);
 	}
 	/***
@@ -207,6 +206,61 @@ public class Player
 		//Print Line
 		System.out.println("\nProgram Run Time: ");
 		System.out.println(timeTotal + " milliseconds");
+	}
+	/***
+	 * 
+	 * @return total value of cards in deck.
+	 */
+	public int cardsValue()
+	{
+		int totalValue = 0;
+		int aces = 0;
+
+		for(Card aCard: deck)
+		{
+			switch(aCard.getValue())
+			{
+			case TWO: totalValue += 2; break;
+			case THREE: totalValue += 3; break;
+			case FOUR: totalValue += 4; break;
+			case FIVE: totalValue += 5; break;
+			case SIX: totalValue += 6; break;
+			case SEVEN: totalValue += 7; break;
+			case EIGHT: totalValue += 8; break;
+			case NINE: totalValue += 9; break;
+			case TEN: totalValue += 10; break;
+			case JACK: totalValue += 10; break;
+			case QUEEN: totalValue += 10; break;
+			case KING: totalValue += 10; break;
+			case ACE: totalValue += 1; break;
+			}
+		}
+		//check if ACE should either be valued at 11 or 1
+		for(int i = 0; i < aces; i++)
+		{
+			if(totalValue > 21) //10
+			{
+				totalValue -= 10;	
+			}
+			else
+			{
+				totalValue += 11;
+			}
+		}
+		return totalValue;
+	}
+	/***
+	 * @return String
+	 */
+	public String toString()
+	{
+		String cardListOutput = "";
+
+		for(Card aCard: this.deck)
+		{
+			cardListOutput += "\n" + aCard.toString();
+		}
+		return cardListOutput;
 	}	
 	/***
 	 * 
@@ -233,8 +287,6 @@ public class Player
 		p1.setName("David Gonzalez");
 		p1.addMoney(962);
 
-
-
 		System.out.println("\nTesting the replace elements method:\n");
 
 		p1.writeToUserFile(outputFile);
@@ -246,4 +298,3 @@ public class Player
 		programRunTime();
 	}
 }
-
