@@ -39,6 +39,11 @@ public class Opponent extends Deck
 		// generates random amount of money for each random player.
 		this.playerMoneyAmount = (double)rand.nextInt((500-5)+1)+5;//minimum bet is $5 and maximum bet is $500		
 	}	
+	/**
+	 * 
+	 * @param name
+	 * @param amount
+	 */
 	public Opponent(String name, int amount)
 	{
 		this.opponentDeck = new Deck();
@@ -145,7 +150,6 @@ public class Opponent extends Deck
 		}
 		return this.choice_probability;
 	}
-
 	/***
 	 * CHECK THIS METHOD
 	 * Method that checks the current playing value in his/her deck.
@@ -180,7 +184,6 @@ public class Opponent extends Deck
 		}
 		return choice;
 	}
-
 	/***
 	 * Factor Method to determine to continue due to a winning streak.
 	 * @return
@@ -207,7 +210,6 @@ public class Opponent extends Deck
 	{
 		return Math.random() < 0.5;
 	}
-
 	//*********************************************************************************************************************************
 	// Everything above is considered part of the decision making process
 	//*********************************************************************************************************************************
@@ -297,7 +299,6 @@ public class Opponent extends Deck
 	 * Method that return's an opponents output of all the rounds they have played.
 	 * @return 
 	 */
-
 	public int getTotalWins()
 	{
 		int totalWins = 0;
