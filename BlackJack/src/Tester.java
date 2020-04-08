@@ -1,29 +1,54 @@
 import java.io.IOException;
 import java.text.NumberFormat;
 
-public class Tester 
+public class Tester extends Challenger
 {
 	public static void main(String[] args) throws IOException
 	{
+		playerTester();
+
+	}
+	/***
+	 * 
+	 * @param args
+	 * @throws IOException
+	 */
+	public static void playerTester() throws IOException
+	{
+		
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();
-
-
-		Deck d1 = new Deck();
-		d1.createFullDeck();
-		System.out.println(d1.toString());
-		d1.shuffle();
-		System.out.println(d1.deckSize());
-		System.out.println(d1.toString());
-
-		Opponent o1 = new Opponent();
-		o1.randomPlayerName();
-		System.out.println(o1.getName());
-		System.out.println(formatter.format(o1.getOpponentAmount()));
+		Deck deck = new Deck();
+		deck.createFullDeck();
+		deck.shuffle();
+		System.out.println(deck.toString()+"\n");
+		
+		String inputFileName = "user.txt";
+		String outputFile = "user.txt";
+		//PrintWriter out = new PrintWriter(outputFileName);
 
 		Player p1 = new Player();
-		p1.getUserFileContents("user.txt");
-		System.out.println("\n\n"+p1.getName() + "\n" + formatter.format(p1.getAmount()) + "\n" + formatter.format(p1.allTimeWinnings())+ "\n" + p1.winLoseRatio());
+		p1.getUserFileContents(inputFileName);
 
+		System.out.print("\n");
+		//System.out.println(userFileContents.get(0));
+
+		p1.setName("David Gonzalez");
+		p1.addMoney(1000);
+
+		System.out.println("\nTesting the replace elements method:\n");
+
+		p1.writeToUserFile(outputFile);
+		
+		p1.addCard(deck.getCard(0));
+		deck.removeCard(0);
+		p1.addCard(deck.getCard(0));
+		deck.removeCard(0);
+
+		System.out.println(p1.challengerToString());
+
+
+		System.out.println(p1.deckToString());
+		System.out.println(p1.cardsValue());
 
 	}
 }

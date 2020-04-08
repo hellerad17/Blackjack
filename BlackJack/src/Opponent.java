@@ -13,12 +13,9 @@ import java.util.Random;
  * Copyright (C) 2020 Blackjack Project 
  *
  */
-public class Opponent extends Deck
+public class Opponent extends Challenger
 {
-	private String name;
-	private Deck opponentDeck;
-	private double playerMoneyAmount;
-	private ArrayList<Boolean> wins;
+	
 	private int choice_probability;
 	private int probability_factor_coefficient;
 	private int probability_factor;
@@ -32,23 +29,11 @@ public class Opponent extends Deck
 	//*********************************************************************
 	public Opponent() throws IOException 
 	{	
-		this.rand = new Random();
-		this.wins = new ArrayList<>();
-		this.opponentDeck = new Deck();
+		super();
 		randomPlayerName();
 		// generates random amount of money for each random player.
 		this.playerMoneyAmount = (double)rand.nextInt((500-5)+1)+5;//minimum bet is $5 and maximum bet is $500		
 	}	
-	/**
-	 * 
-	 * @param name
-	 * @param amount
-	 */
-	public Opponent(String name, int amount)
-	{
-		this.opponentDeck = new Deck();
-		this.playerMoneyAmount = amount;
-	}
 	/***
 	 * 
 	 * @throws IOException
@@ -82,47 +67,7 @@ public class Opponent extends Deck
 			e.printStackTrace();
 		}
 	}
-	/***
-	 * 
-	 * @param name
-	 * @
-	 */
-	public void setName(String name)
-	{
-		this.name = name;
-	}
-	/***
-	 * 
-	 * @return return the name of the opponent
-	 */
-	public String getName()
-	{
-		return this.name;
-	}
-	/***
-	 * 
-	 * @param fileName
-	 * @return total number of lines in a file
-	 * @throws IOException
-	 */
-	public int countLinesInFile(String fileName) throws IOException
-	{
-		int linecount = 0;
-		BufferedReader br = new BufferedReader(new FileReader(fileName));
-		try
-		{
-			String line;
-			while ((line = br.readLine()) != null) 
-			{
-				linecount++;
-			}
-		} 
-		finally
-		{
-			br.close();
-		}
-		return linecount;
-	}
+	
 	//*********************************************************************************************************************************
 	// Everything below is where this opponent will make decisions 
 	// based off the results from the game.
@@ -212,33 +157,6 @@ public class Opponent extends Deck
 	}
 	//*********************************************************************************************************************************
 	// Everything above is considered part of the decision making process
-	//*********************************************************************************************************************************
-	//*********************************************************************************************************************************
-	// Everything below is part of wagering.
-	//*********************************************************************************************************************************
-	/***
-	 * Method that randomly chooses the wager for the opponent.
-	 * @param min, max, moneyTotal
-	 * @return class member 'wager'
-	 */
-	public int wager(int min, int max, double d)
-	{
-		Random random =new Random();
-
-		this.wager = (int) (random.nextInt((max-min)+1) + min);		
-		while (this.wager > d)
-		{
-			if ((this.wager < 0) || (this.wager < min))
-			{
-				throw new IllegalArgumentException("Cannot bet while having less than 0 or your bet cannot be less than the minimum waging value! You current amount is " +  d + " dollars");
-			}
-			this.wager = (int) (random.nextInt((max-min)+1) + min);
-		}
-		this.playerMoneyAmount -= this.wager;
-		return this.wager;	
-	}
-	//*********************************************************************************************************************************
-	// Everything above is part of wagering
 	//*********************************************************************************************************************************
 	//*********************************************************************************************************************************
 	// Below is the decision being made by the opponent.
@@ -343,14 +261,6 @@ public class Opponent extends Deck
 	}
 	/***
 	 * 
-	 * @return opponent total money
-	 */
-	public double getOpponentAmount()
-	{
-		return this.playerMoneyAmount;
-	}
-	/***
-	 * 
 	 * @return
 	 */
 	public int winningStreak()
@@ -368,15 +278,5 @@ public class Opponent extends Deck
 			}
 		}
 		return streak;
-	}
-	/***
-	 * 
-	 */
-	@Override
-	public String toString()
-	{
-		NumberFormat formatter = NumberFormat.getCurrencyInstance();
-		String str = getName() + "\n" + formatter.format(this.playerMoneyAmount);
-		return str;
 	}
 }
