@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -123,8 +124,9 @@ public class Blackjack
 	}
 	/**
 	 * Called if the opponent/player
+	 * @throws FileNotFoundException 
 	 */
-	public static void opponentPush(int i)
+	public static void opponentPush(int i) throws FileNotFoundException
 	{
 		rand = new Random();
     	//int ranSentence =  rand.nextInt(10)+1;
@@ -135,7 +137,25 @@ public class Blackjack
     	}
 	    
 	    System.out.println("You get your money back " + opponents.get(i).getName());
-	    System.out.println("Cash: "+ opponents.get(i).getOpponentAmount());
+	    System.out.println("Cash: "+ opponents.get(i).getAmount());
+	}
+	/**
+	 * 
+	 * @param c
+	 * @return
+	 */
+	public boolean checkForBlackjack(Challenger c)
+	{
+		return c.getDeck().size() == 2 && c.cardsValue() == 21;
+	}
+	/**
+	 * 
+	 * @param c
+	 * @return
+	 */
+	public boolean checkForTwentyOne(Challenger c)
+	{
+		return c.getDeck().size() >= 2 && c.cardsValue() == 21;
 	}
 	/***
 	 * 
@@ -144,20 +164,8 @@ public class Blackjack
 	 */
 	public static void main(String[] args) throws IOException 
 	{
-		String x = "";
-		long time = System.currentTimeMillis(); //gives the amount of time that passed since the birth of this function since 1977
-
-		//System.out.println(time);
 		gameRules();
 		Blackjack one = new Blackjack(6);
 		System.out.println(Blackjack.opponents.get(2));
-
-
-		long t2 =  System.currentTimeMillis();
-		long timeTotal = t2-time;
-
-		//Print Line
-		System.out.println("\nProgram Run Time: ");
-		System.out.println(timeTotal + " milliseconds");
 	}
 }
