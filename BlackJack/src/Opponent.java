@@ -32,7 +32,7 @@ public class Opponent extends Challenger
 		super();
 		randomPlayerName();
 		// generates random amount of money for each random player.
-		this.playerMoneyAmount = (double)rand.nextInt((500-5)+1)+5;//minimum bet is $5 and maximum bet is $500		
+		//this.amount = (double)rand.nextInt((500-5)+1)+5;//minimum bet is $5 and maximum bet is $500		
 	}	
 	/***
 	 * 
@@ -53,7 +53,7 @@ public class Opponent extends Challenger
 			{
 				if (lineNumber == randomIndex)
 				{
-					this.name = readbuffer.readLine();
+					readbuffer.readLine();
 				} 
 				else
 				{
@@ -104,7 +104,7 @@ public class Opponent extends Challenger
 	{
 		boolean choice = false;
 
-		int deckValue = this.opponentDeck.cardsValue();
+		//FIX:  int deckValue = ((Challenger) this.deck).cardsValue();
 
 		if (deckValue == 21)
 		{

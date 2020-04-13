@@ -32,23 +32,19 @@ public class Tester extends Challenger
 		System.out.print("\n");
 		//System.out.println(userFileContents.get(0));
 
-		p1.setName("David Gonzalez");
-		p1.addMoney(1000);
+		
+
 
 		System.out.println("\nTesting the replace elements method:\n");
 
-		p1.writeToUserFile(outputFile);
 		
 		p1.addCard(deck.getCard(0));
 		deck.removeCard(0);
 		p1.addCard(deck.getCard(0));
 		deck.removeCard(0);
 
+		p1.addMoney(10000);
+		p1.writeToUserFile(outputFile);
 		System.out.println(p1.challengerToString());
-
-
-		System.out.println(p1.deckToString());
-		System.out.println(p1.cardsValue());
-
 	}
 }

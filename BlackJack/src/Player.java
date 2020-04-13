@@ -1,17 +1,10 @@
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.stream.Stream;
+
 /***
  * 
  * @author Andrew Heller
@@ -90,6 +83,13 @@ public class Player extends Challenger
 		}
 		userFile.close();
 	}
+	/**
+	 * 
+	 */
+	public void addWins()
+	{
+		userFileContents.set(2,Integer.parseInt((this.userFileContents.get(2)) + 1) + "");
+	}
 	/***
 	 * 
 	 * @return
@@ -97,6 +97,13 @@ public class Player extends Challenger
 	public int totalWins()
 	{
 		return Integer.parseInt(this.userFileContents.get(2));
+	}
+	/**
+	 * 
+	 */
+	public void addRound()
+	{
+		userFileContents.set(3, Integer.parseInt((this.userFileContents.get(3)) + 1) + "");
 	}
 	/***
 	 * 
@@ -114,11 +121,18 @@ public class Player extends Challenger
 	{
 		return Integer.parseInt(this.userFileContents.get(4));
 	}
+	/**
+	 * 
+	 */
+	public void setWinLoseRatio()
+	{
+		this.userFileContents.set(5, (double)(this.totalWins() / this.totalRounds()) + "");
+	}
 	/***
 	 * 
 	 * @return
 	 */
-	public double winLoseRatio()
+	public double getWinLoseRatio()
 	{
 		return Double.parseDouble(this.userFileContents.get(5));
 	}

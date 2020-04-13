@@ -4,26 +4,28 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Random;
 
-abstract class Challenger
+abstract class Challenger 
 {
 	/**
 	 * 
 	 */
-	
 	private String name;
 	private int amount;
 	private ArrayList<Card> deck;
-	private ArrayList<Boolean> wins;
+	private LinkedList<Boolean> wins;
 	private int wager;	
 	private boolean decision;
 	private Random rand;
-	
+	/**
+	 * 
+	 */
 	public Challenger()
 	{
 		this.rand = new Random();
-		this.wins = new ArrayList<>();
+		this.wins = new LinkedList<>();
 		this.deck = new ArrayList<>();
 	}
 	/**
@@ -74,6 +76,11 @@ abstract class Challenger
 	public void clearPlayerDeck()
 	{
 		this.deck.clear();
+	}
+	
+	public ArrayList<Card> getDeck()
+	{
+		return this.deck;
 	}
 	/***
 	 * Add money to players account.
@@ -137,7 +144,7 @@ abstract class Challenger
 	 * @param min, max, moneyTotal
 	 * @return class member 'wager'
 	 */
-	public int wager(int min, int max, double d)
+	public void wager(int min, int max, double d)
 	{
 		Random random =new Random();
 
@@ -151,7 +158,15 @@ abstract class Challenger
 			this.wager = (int) (random.nextInt((max-min)+1) + min);
 		}
 		this.amount -= this.wager;
-		return this.wager;	
+		
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public int getWager()
+	{
+		return this.wager;
 	}
 	/***
 	 * 
@@ -198,7 +213,7 @@ abstract class Challenger
 	public String challengerToString() throws FileNotFoundException
 	{
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();
-		String str = this.getName() + "\n" + formatter.format(this.amount);
+		String str = this.getName() + "\n" + formatter.format(this.getAmount());
 		return str;
 	}
 }

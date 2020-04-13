@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JRadioButtonMenuItem;
@@ -28,7 +29,6 @@ public class BlackjackGUI extends JFrame
 
 	private Action saveAction;
 	private Action saveAsAction;
-	private Action closeAction;
 	private JCheckBoxMenuItem readonlyItem;
 	private JPopupMenu popup;
 
@@ -55,7 +55,7 @@ public class BlackjackGUI extends JFrame
 		saveAsAction = new TestAction("Save As");
 		fileMenu.add(saveAsAction);
 		fileMenu.addSeparator();
-		
+
 		fileMenu.add(new AbstractAction("Exit")
 		{
 			public void actionPerformed(ActionEvent event)
@@ -63,7 +63,7 @@ public class BlackjackGUI extends JFrame
 				System.exit(0);
 			}
 		});
-		
+
 
 		// demonstrate check box and radio button menus
 
@@ -126,6 +126,14 @@ public class BlackjackGUI extends JFrame
 		Action aboutAction = new TestAction("About");
 		aboutAction.putValue(Action.MNEMONIC_KEY, new Integer('A'));
 		helpMenu.add(aboutAction);
+	  
+		
+//		{ 
+//			// Code To popup an INFORMATION_MESSAGE Dialog. 
+//			JOptionPane.showMessageDialog(this, "You Pressed Button FOUR",  
+//					"About",  
+//					JOptionPane.INFORMATION_MESSAGE); 
+//		} 
 
 		// add all top-level menus to menu bar
 
