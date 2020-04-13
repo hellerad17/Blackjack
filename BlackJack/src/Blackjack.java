@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
 /**
@@ -17,17 +18,17 @@ public class Blackjack
 	/***
 	 * 
 	 */
-	private static ArrayList<Opponent> opponents;
+	private static LinkedList<Challenger> challengers;
 	/***
 	 * 
 	 */
 	public Blackjack(int numPlayers) throws IOException
 	{
-		Blackjack.opponents = new ArrayList<>();
+		this.challengers = new LinkedList<>();
 		addPlayersToTable(numPlayers);
 	}
 	public int getSize() {
-		return opponents.size();
+		return challengers.size();
 	}
 	/***
 	 * 
@@ -38,7 +39,7 @@ public class Blackjack
 	{
 		for(int i = 0; i < numberOfPlayers;i++)
 		{
-			opponents.add(new Opponent());
+			challengers.add(new Opponent());
 		}
 	}
 	/***
@@ -46,9 +47,9 @@ public class Blackjack
 	 * @param i
 	 * @return
 	 */
-	public Opponent getOpponents(int i)
+	public Challenger getChallenger(int i)
 	{
-		return this.opponents.get(i);
+		return this.challengers.get(i);
 	}
 	/***
 	 * 
@@ -71,7 +72,7 @@ public class Blackjack
 	 */
 	public static boolean isHitorStand(int i)
 	{
-		boolean hitter = opponents.get(i).getDecision();
+		boolean hitter = opponents.get(i).getDecision(); // NEED TO WORK ON THIS
 	    if(hitter==true)
 	    {
 	    	//opponent or player will hit
@@ -146,7 +147,17 @@ public class Blackjack
 	 */
 	public boolean checkForBlackjack(Challenger c)
 	{
-		return c.getDeck().size() == 2 && c.cardsValue() == 21;
+		boolean status;
+		if(c.getDeck().size() == 2 && c.cardsValue() == 21)
+		{
+			status = true;
+			c.addMoney(c.getWager() * (int)2.50);
+		}
+		else
+		{
+			status = false;
+		}
+		return status;
 	}
 	/**
 	 * 
@@ -155,7 +166,17 @@ public class Blackjack
 	 */
 	public boolean checkForTwentyOne(Challenger c)
 	{
-		return c.getDeck().size() >= 2 && c.cardsValue() == 21;
+		boolean status;
+		if(c.getDeck().size() >= 2 && c.cardsValue() == 21)
+		{
+			status = true;
+			c.addMoney(c.getWager() * 2);
+		}
+		else
+		{
+			status = false;
+		}
+		return status;
 	}
 	/***
 	 * 
