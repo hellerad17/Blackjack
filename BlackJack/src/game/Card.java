@@ -1,8 +1,11 @@
+package game;
+import utils.Suit;
+import utils.Value;
+
 /**
  * 
  * @author Andrew Heller
- * Copyright (C) 2020 Blackjack Project 
- * 
+ *  
  */
 public class Card
 {
@@ -29,19 +32,14 @@ public class Card
 	 */
 	public String toString()
 	{
-		return this.suit.toString() + "-" + this.value.toString(); 
+		return this.value.toString() + " of " + this.suit.toString(); 
 	}
 	/***
 	 * 
 	 * @return private class variable 'value'.
 	 */
 	public Value getValue() 
-	{
-		// check if there is no Card value.
-		if (this.value == null)
-		{
-			throw new IllegalArgumentException("\nCannot find card value!\nError from Card.getValue()\n");
-		}		
+	{	
 		return this.value;
 	}
 }

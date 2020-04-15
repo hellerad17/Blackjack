@@ -1,3 +1,4 @@
+package game;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,15 +12,42 @@ import java.util.Scanner;
  * Copyright (C) 2020 Blackjack Project 
  *
  */
-public class Player extends Challenger
+public class User extends Player
 {
 	private ArrayList<String> userFileContents;
+	
+	private double sessionMoney; // the mount of money in the session. will get dumped to the file at the end
 
-	public Player()
+	public User()
 	{
-		super();
 		this.userFileContents = new ArrayList<>();	
 	}
+	
+	@Override
+	public boolean determineHit() 
+	{
+		// will take user input to determine this
+		return false;
+	}
+	@Override
+	public void removeMoney() 
+	{
+		// will take money out of the player's cash amount
+		
+	}
+	@Override
+	public void addMoney() 
+	{
+		// will add money to the player's cash amount
+		
+	}
+	@Override
+	public double getMoney() 
+	{
+		// will return the player's balance
+		return 0.0;
+	}
+	
 	/***
 	 * Replaces the current name of the player in the file 'user.txt' but keeps the amount value in the value.
 	 * @param n
