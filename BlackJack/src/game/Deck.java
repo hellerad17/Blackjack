@@ -21,6 +21,7 @@ public class Deck
 	public Deck() 
 	{
 		this.deck = new ArrayList<>();
+		createFullDeck();
 	}
 	/***
 	 * 
@@ -28,6 +29,7 @@ public class Deck
 	 */
 	public void createFullDeck()
 	{
+		deck = new ArrayList<>();
 		//Generate Cards
 		for(Suit cardSuit : Suit.values()) 
 		{ //Suit is an enum
@@ -96,12 +98,12 @@ public class Deck
 	 * Draws top card from the deck and removes the top card from the same deck.
 	 * @param comingFrom
 	 */
-	public void draw(Deck comingFrom) 
+	public Card draw() 
 	{
-		this.deck.add(comingFrom.getCard(0));
-
+		Card drawn = deck.get(0);
 		//removes the top Card from the current deck
-		comingFrom.removeCard(0); 
+		removeCard(0); 
+		return drawn;
 	}
 	/***
 	 * 
@@ -135,48 +137,7 @@ public class Deck
 			this.removeCard(0);
 		}
 	}
-	/***
-	 * 
-	 * @return total value of cards in deck.
-	 */
-	public int cardsValue()
-	{
-		int totalValue = 0;
-		int aces = 0;
 
-		for(Card aCard: deck)
-		{
-			switch(aCard.getValue())
-			{
-			case TWO: totalValue += 2; break;
-			case THREE: totalValue += 3; break;
-			case FOUR: totalValue += 4; break;
-			case FIVE: totalValue += 5; break;
-			case SIX: totalValue += 6; break;
-			case SEVEN: totalValue += 7; break;
-			case EIGHT: totalValue += 8; break;
-			case NINE: totalValue += 9; break;
-			case TEN: totalValue += 10; break;
-			case JACK: totalValue += 10; break;
-			case QUEEN: totalValue += 10; break;
-			case KING: totalValue += 10; break;
-			case ACE: totalValue += 1; break;
-			}
-		}		
-		//check if ACE should either be valued at 11 or 1
-		for(int i = 0; i < aces; i++)
-		{
-			if(totalValue > 10) 
-			{
-				totalValue += 1;	
-			}
-			else
-			{
-				totalValue += 11;
-			}
-		}
-		return totalValue;
-	}
 	/***
 	 * Takes all the cards in the ArrayList 'deck' and prints out every element.
 	 */
