@@ -18,7 +18,6 @@ public class Opponent extends Player
 {
 	double money;
 
-	@Override
 	public boolean determineHit() {
 		// will use some ai/logic to determine somewhat randomly if the opponent should hit
 		return false;

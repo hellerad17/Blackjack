@@ -1,6 +1,2 @@
-David Gonzalez
-1962
-12
-600
-120000
-0.61
+David_Gonzalez 1962 12 600 120000 0.61
+Pete_Davis 2640 9 500 100000 0.76

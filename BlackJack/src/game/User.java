@@ -24,12 +24,6 @@ public class User extends Player
 	}
 	
 	@Override
-	public boolean determineHit() 
-	{
-		// will take user input to determine this
-		return false;
-	}
-	@Override
 	public void removeMoney() 
 	{
 		// will take money out of the player's cash amount
