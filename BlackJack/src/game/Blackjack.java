@@ -24,6 +24,7 @@ public class Blackjack
 	public Blackjack(int numOpponents)
 	{
 		user = new User();
+		dealer = new Dealer();
 		deck = new Deck();
 		scan = new Scanner(System.in);
 		
@@ -60,9 +61,60 @@ public class Blackjack
 		printGameRules();
 		user.addCard(deck.draw());
 		user.addCard(deck.draw());
-		System.out.println(user.handToString());
+		System.out.println("User " + user.handToString());
+		dealer.addCard(deck.draw());
+		dealer.addCard(deck.draw());
+		System.out.println("Dealer " + dealer.handToString());
+		
+		int userScore = userTurn();
+		int dealerScore = dealerTurn();
+		
+		System.out.println("\nThe winner is...");
+		System.out.println((userScore > dealerScore ? "YOU!" : "The Dealer") + "(" + userScore + " to " + dealerScore + ")" );
+	}
+	
+	public int dealerTurn()
+	{
+		System.out.println("\n\nDEALER TURN");
+		boolean stillPlayingHand = true;
+		int score = 0;
+		while(stillPlayingHand)
+		{
+			if(dealer.determineHit()) 
+			{
+				System.out.println("\nHits for new card");
+				Card hit = deck.draw();
+				System.out.println(hit.toString());
+				dealer.addCard(hit);
+				System.out.println("\n" + dealer.handToString());
+				
+				if(dealer.determineHandValue() > 21)
+				{
+					System.out.println("Busted");
+					score = 0;
+					stillPlayingHand = false;
+				}
+			}
+			else
+			{
+				System.out.println("\nStays with current hand");
+				System.out.println("Hand was worth: " + dealer.determineHandValue());
+				score = dealer.determineHandValue();
+				stillPlayingHand = false;
+				
+			}
+		}
+		
+		System.out.println("Hand complete, score " + score);
+		return score;
+	}
+	
+	public int userTurn()
+	{
+		System.out.println("\n\nUSER TURN");
 		System.out.println("Type H to hit or S to stay");
 		boolean stillPlayingHand = true;
+		int score = 0;
 		while(stillPlayingHand)
 		{
 			String next = scan.next();
@@ -77,6 +129,7 @@ public class Blackjack
 				if(user.determineHandValue() > 21)
 				{
 					System.out.println("Busted");
+					score = 0;
 					stillPlayingHand = false;
 				}
 			}
@@ -84,7 +137,7 @@ public class Blackjack
 			{
 				System.out.println("\nStays with current hand");
 				System.out.println("Hand was worth: " + user.determineHandValue());
-				System.out.println("\n" + user.handToString());
+				score = user.determineHandValue();
 				stillPlayingHand = false;
 				
 			}
@@ -94,7 +147,8 @@ public class Blackjack
 			}
 		}
 		
-		System.out.println("Hand complete, score " + user.determineHandValue());
+		System.out.println("Hand complete, score " + score);
+		return score;
 	}
 	
 	public static void printGameRules()

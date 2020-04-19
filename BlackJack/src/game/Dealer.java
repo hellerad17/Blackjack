@@ -5,8 +5,11 @@ public class Dealer extends Player
 
 	public boolean determineHit() 
 	{
-		// will use the hadn value to determine
-		return false;
+		if(determineHandValue() > 16)
+		{
+			return false;
+		}
+		return true;
 	}
 
 	@Override
