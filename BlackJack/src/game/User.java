@@ -20,21 +20,10 @@ public class User extends Player
 
 	public User()
 	{
-		this.userFileContents = new ArrayList<>();	
+		super();
+		this.userFileContents = new ArrayList<>();
 	}
 	
-	@Override
-	public void removeMoney() 
-	{
-		// will take money out of the player's cash amount
-		
-	}
-	@Override
-	public void addMoney() 
-	{
-		// will add money to the player's cash amount
-		
-	}
 	@Override
 	public double getMoney() 
 	{
@@ -173,5 +162,17 @@ public class User extends Player
 	public void subMoney(int money)
 	{
 		this.userFileContents.set(1, (Integer.parseInt(this.userFileContents.get(1)) - money) + "");
+	}
+
+	@Override
+	public void removeMoney(double amt) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addMoney(double amt) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -10,14 +10,14 @@ public class Dealer extends Player
 	}
 
 	@Override
-	public void removeMoney() 
+	public void removeMoney(double amt) 
 	{
 		// won't do anything, the dealer has unlimited cash
 		
 	}
 
 	@Override
-	public void addMoney() 
+	public void addMoney(double amt) 
 	{
 		// won't do anything, dealer has unilimited cash
 		

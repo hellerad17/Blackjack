@@ -3,10 +3,12 @@ package game;
 import java.util.ArrayList;
 import java.util.List;
 
+import utils.Value;
+
 public abstract class Player 
 {
-	public abstract void removeMoney();
-	public abstract void addMoney();
+	public abstract void removeMoney(double amt);
+	public abstract void addMoney(double amt);
 	public abstract double getMoney();
 	private List<Card> hand;
 	
@@ -19,7 +21,27 @@ public abstract class Player
 	 * Hand methods
 	 */
 	
-	public void determineHandValue()
+	public List<Card> getHand()
+	{
+		return hand;
+	}
+	
+	public void addCard(Card card)
+	{
+		hand.add(card);
+	}
+	
+	public String handToString()
+	{
+		StringBuilder sb = new StringBuilder("Hand: \n");
+		for(Card card : hand)
+		{
+			sb.append(card.toString() + "\n");
+		}
+		return sb.toString();
+	}
+	
+	public int determineHandValue()
 	{
 		int value = 0;
 		for(Card card : hand)
@@ -27,14 +49,7 @@ public abstract class Player
 			switch(card.getValue())
 			{
 			case ACE:
-				if (value + 11 > 21)
-				{
-					value += 1;
-				}
-				else
-				{
-					value += 11;
-				}
+				value += 11;
 				break;
 			case TWO:
 				value += 2;
@@ -74,5 +89,15 @@ public abstract class Player
 				break;
 			}
 		}
+		
+		for(Card card : hand)
+		{
+			if(value > 21 && card.getValue() == Value.ACE)
+			{
+				value -= 10;
+			}
+		}
+		
+		return value;
 	}
 }

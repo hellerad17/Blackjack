@@ -24,13 +24,13 @@ public class Opponent extends Player
 	}
 
 	@Override
-	public void removeMoney() {
+	public void removeMoney(double amt) {
 		// removes cash from the opponent's money
 		
 	}
 
 	@Override
-	public void addMoney() {
+	public void addMoney(double amt) {
 		// adds cash to the opponent's money
 		
 	}

@@ -3,5 +3,5 @@ package utils;
 
 public enum Suit
 {
-	CLUB, DIAMOND, SPADE, HEART
+	CLUBS, DIAMONDS, SPADES, HEARTS
 }

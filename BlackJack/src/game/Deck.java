@@ -22,6 +22,7 @@ public class Deck
 	{
 		this.deck = new ArrayList<>();
 		createFullDeck();
+		shuffle();
 	}
 	/***
 	 * 
@@ -75,6 +76,11 @@ public class Deck
 	public void removeCard(int card)
 	{
 		this.deck.remove(card);
+		if(deck.isEmpty())
+		{
+			createFullDeck();
+			shuffle();
+		}
 	}	
 	/***
 	 * 

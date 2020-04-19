@@ -42,4 +42,13 @@ public class Card
 	{	
 		return this.value;
 	}
+	
+	/***
+	 * 
+	 * @return private class variable 'suit'.
+	 */
+	public Suit getSuit() 
+	{	
+		return this.suit;
+	}
 }
