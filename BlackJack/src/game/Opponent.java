@@ -1,12 +1,4 @@
 package game;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.Random;
 /***
  * 
@@ -78,19 +70,22 @@ public class Opponent extends Player
 
 
 	@Override
-	public void removeMoney(double amt) {
+	public void removeMoney(double amt) 
+	{
 		// removes cash from the opponent's money
 		
 	}
 
 	@Override
-	public void addMoney(double amt) {
+	public void addMoney(double amt) 
+	{
 		// adds cash to the opponent's money
 		
 	}
 
 	@Override
-	public double getMoney() {
+	public double getMoney() 
+	{
 		// gets the amount of cash
 		return 0;
 	}
